@@ -1,4 +1,5 @@
 JSLint settings for IntelliJ IDEA
-Copy the jslint.xml file to ${PROJECT-DIR}/.idea/jsLinters/
 
-http://youtrack.jetbrains.com/issue/WI-11087
+Manually copy the jslint.xml file to ${PROJECT-DIR}/.idea/jsLinters/
+
+See: http://youtrack.jetbrains.com/issue/WI-11087
