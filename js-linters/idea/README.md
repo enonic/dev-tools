@@ -1,0 +1,1 @@
+Copy the jslint.xml file to $(PROJECT-DIR)/.idea/jsLinters/
