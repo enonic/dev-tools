@@ -4,7 +4,7 @@
     <option browser="true" />
     <option indent="4" />
     <option maxerr="50" />
-    <option predef="Ext, AdminLiveEdit, $liveedit" />
+    <option predef="Ext, Admin, AdminLiveEdit, $liveedit" />
     <option sloppy="true" />
     <option vars="true" />
   </component>
