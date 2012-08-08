@@ -6,7 +6,7 @@
     <option indent="4" />
     <option maxerr="50" />
     <option plusplus="true" />
-    <option predef="Ext, Admin, AdminLiveEdit, $liveedit, Templates" />
+    <option predef="Ext, Admin, AdminLiveEdit, $liveedit, Templates, $, jQuery" />
     <option sloppy="true" />
     <option vars="true" />
   </component>
