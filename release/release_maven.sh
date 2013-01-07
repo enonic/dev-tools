@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1) Clone project from git (with submodules)
-# 2) Bulild project without deploy (mvn clean install)
+# 2) Build project without deploy (mvn clean install)
 # 3) Run mvn versions:set to set version to release-version
 # 4) Run mvn versions:commit to remove temporary version
 # 5) Bulild project with deploy (mvn clean deploy)
@@ -25,14 +25,13 @@ error() {
   exit 1
 }
 
-[ "$#" -eq 5 ] || usage
+[ "$#" -eq 4 ] || usage
 
 DIR=`dirname $0`
 PROJECT=$1
 BRANCH=$2
-FROM_VERSION=$3
-TO_VERSION=$4
-NEXT_VERSION=$5
+RELEASE_VERSION=$3
+NEXT_VERSION=$4
 GIT_URL=git@github.com:enonic/$PROJECT.git
 TMP_DIR=./stage
 
@@ -47,28 +46,34 @@ echo "---> Checking out project from $GIT_URL"
 git clone $GIT_URL -b $BRANCH . || { error; } 
 
 echo "---> Building Maven project"
-mvn clean deploy || { error; }
+mvn clean install || { error; }
 
-echo "---> Updating Maven project version from $FROM_VERSION to $TO_VERSION"
-find . -name "pom.xml" | xargs sed -i "" -e "s/$FROM_VERSION/$TO_VERSION/g" || { error; } 
+echo "---> Set release version: $RELEASE_VERSION"
+mvn versions:set -DnewVersion=$RELEASE_VERSION || { error; }
 
-echo "---> Building Maven project"
-mvn clean deploy || { error; }
-
-echo "---> Checking in changes to Git"
-git commit -m "Updating version from $FROM_VERSION to $TO_VERSION" -a || { error; } 
-
-echo "---> Tagging sources with $GIT_TAG"
-git tag -m "Version $TO_VERSION" v$TO_VERSION || { error; } 
-
-echo "---> Updating Maven project version from $TO_VERSION to $NEXT_VERSION"
-find . -name "pom.xml" | xargs sed -i "" -e "s/$TO_VERSION/$NEXT_VERSION/g" || { error; } 
+echo "---> Confirm version: $RELEASE_VERSION"
+mvn versions:commit || { error; }
 
 echo "---> Building Maven project"
 mvn clean deploy || { error; }
 
 echo "---> Checking in changes to Git"
-git commit -m "Updating version from $TO_VERSION to $NEXT_VERSION" -a || { error; } 
+git commit -m "Updating version to $RELEASE_VERSION" -a || { error; } 
+
+echo "---> Tagging sources with v$RELEASE_VERSION"
+git tag -m "Version $RELEASE_VERSION" v$RELEASE_VERSION || { error; } 
+
+echo "---> Updating Maven project version to $NEXT_VERSION"
+mvn versions:set -DnewVersion=$NEXT_VERSION || { error; }
+
+echo "---> Confirm version: $NEXT_VERSION"
+mvn versions:commit || { error; }
+
+echo "---> Building Maven project"
+mvn clean install || { error; }
+
+echo "---> Checking in changes to Git"
+git commit -m "Updating version to $NEXT_VERSION" -a || { error; } 
 
 echo "---> Pushing changes to remote Git repository"
 git push --tags origin $BRANCH || { error; } 
