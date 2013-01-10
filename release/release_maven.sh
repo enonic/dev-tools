@@ -36,6 +36,7 @@ GIT_URL=git@github.com:enonic/$PROJECT.git
 TMP_DIR=./stage
 
 cd $DIR
+export MAVEN_OPTS="-Xmx2048m"
 
 echo "---> Cleaning up previous files"
 rm -rf $TMP_DIR
@@ -55,7 +56,7 @@ echo "---> Confirm version: $RELEASE_VERSION"
 mvn versions:commit || { error; }
 
 echo "---> Building Maven project"
-mvn clean deploy || { error; }
+mvn clean deploy -DskipTests || { error; }
 
 echo "---> Checking in changes to Git"
 git commit -m "Updating version to $RELEASE_VERSION" -a || { error; } 
@@ -70,7 +71,7 @@ echo "---> Confirm version: $NEXT_VERSION"
 mvn versions:commit || { error; }
 
 echo "---> Building Maven project"
-mvn clean install || { error; }
+mvn clean install -DskipTests || { error; }
 
 echo "---> Checking in changes to Git"
 git commit -m "Updating version to $NEXT_VERSION" -a || { error; } 

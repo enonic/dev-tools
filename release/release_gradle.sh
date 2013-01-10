@@ -37,6 +37,8 @@ GRADLE=./gradle/gradle.sh
 GRADLE_PROPERTIES=./gradle.properties
 cd $DIR
 
+export GRADLE_OPTS="-Xmx2048m"
+
 echo "---> Cleaning up previous files"
 rm -rf $TMP_DIR
 mkdir $TMP_DIR
@@ -46,7 +48,7 @@ echo "---> Checking out project from $GIT_URL"
 git clone $GIT_URL -b $BRANCH . || { error; } 
 
 echo "---> Building Gradle project"
-gradle clean build || { error; }
+gradle clean assemble || { error; }
 
 echo "---> Update to $RELEASE_VERSION"
 sed -i "back" -e "s/^version *=.*/version = $RELEASE_VERSION/g" $GRADLE_PROPERTIES
@@ -64,7 +66,7 @@ echo "---> Updating Gradle project version to $NEXT_VERSION"
 sed -i "back" -e "s/^version *=.*/version = $NEXT_VERSION/g" $GRADLE_PROPERTIES
 
 echo "---> Building Gradle project"
-gradle clean build || { error; }
+gradle clean assemble || { error; }
 
 echo "---> Checking in changes to Git"
 git commit -m "Updating version to $NEXT_VERSION" -a || { error; } 
