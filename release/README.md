@@ -16,9 +16,9 @@ Example for releasing cms-shell:
 
 To release gradle projects, check out the latest scripts and run the following:
 
-	release_grale.sh <project> <branch> <release_version> <next_version>
+	release_gradle.sh <project> <branch> <release_version> <next_version>
 	
 Example for releasing cms-shell:
 
-	release_grale.sh cms-shell master 1.2.0 1.2.0-SNAPSHOT
+	release_gradle.sh cms-shell master 1.2.0 1.2.0-SNAPSHOT
 	
