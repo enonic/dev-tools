@@ -73,15 +73,15 @@
   <option name="WHILE_BRACE_FORCE" value="3" />
   <option name="FOR_BRACE_FORCE" value="3" />
   <option name="ENUM_CONSTANTS_WRAP" value="2" />
+  <GroovyCodeStyleSettings>
+    <option name="INDENT_LABEL_BLOCKS" value="true" />
+  </GroovyCodeStyleSettings>
   <TypeScriptCodeStyleSettings>
     <option name="SPACE_AFTER_TYPE_COLON" value="true" />
   </TypeScriptCodeStyleSettings>
   <XML>
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
   </XML>
-  <ADDITIONAL_INDENT_OPTIONS fileType="haml">
-    <option name="INDENT_SIZE" value="2" />
-  </ADDITIONAL_INDENT_OPTIONS>
   <ADDITIONAL_INDENT_OPTIONS fileType="scala">
     <option name="INDENT_SIZE" value="2" />
     <option name="TAB_SIZE" value="2" />
