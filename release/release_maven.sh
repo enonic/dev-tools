@@ -56,7 +56,7 @@ echo "---> Confirm version: $RELEASE_VERSION"
 mvn versions:commit || { error; }
 
 echo "---> Building Maven project"
-mvn clean deploy -DskipTests || { error; }
+mvn -Pall clean deploy -DskipTests || { error; }
 
 echo "---> Checking in changes to Git"
 git commit -m "Updating version to $RELEASE_VERSION" -a || { error; } 
