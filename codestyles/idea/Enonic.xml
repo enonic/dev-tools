@@ -76,8 +76,12 @@
   <GroovyCodeStyleSettings>
     <option name="INDENT_LABEL_BLOCKS" value="true" />
   </GroovyCodeStyleSettings>
+  <JSCodeStyleSettings>
+    <option name="USE_DOUBLE_QUOTES" value="false" />
+  </JSCodeStyleSettings>
   <TypeScriptCodeStyleSettings>
     <option name="SPACE_AFTER_TYPE_COLON" value="true" />
+    <option name="USE_DOUBLE_QUOTES" value="false" />
   </TypeScriptCodeStyleSettings>
   <XML>
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
@@ -336,4 +340,3 @@
     </indentOptions>
   </codeStyleSettings>
 </code_scheme>
-
