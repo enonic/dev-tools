@@ -7,6 +7,7 @@
     <option name="METHOD_BRACE_STYLE" value="2" />
     <JSCodeStyleSettings version="0">
       <option name="USE_DOUBLE_QUOTES" value="false" />
+      <option name="IMPORT_SORT_MODULE_NAME" value="true" />
     </JSCodeStyleSettings>
     <JavaCodeStyleSettings>
       <option name="GENERATE_FINAL_LOCALS" value="true" />
@@ -46,6 +47,7 @@
     </JavaCodeStyleSettings>
     <TypeScriptCodeStyleSettings version="0">
       <option name="USE_DOUBLE_QUOTES" value="false" />
+      <option name="IMPORT_SORT_MODULE_NAME" value="true" />
     </TypeScriptCodeStyleSettings>
     <ADDITIONAL_INDENT_OPTIONS fileType="scala">
       <option name="INDENT_SIZE" value="2" />
